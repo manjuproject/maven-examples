@@ -13,6 +13,12 @@ node {
      sh 'mvn test'
       } 
     }
+   stage('sonarqube'){
+      withMaven(jdk: 'jdk-8', maven: 'MAVEN') {
+         sh 'mvn sonar:sonar -Dsonar.projectKey=maven-examp -Dsonar.organization=manjuproject -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=21f657b170c7eba8698b097526446188d32735aa'    
+         
+      }
+   }
  
    stage('Package to Jfrog') {
     withMaven(jdk: 'jdk-8', maven: 'MAVEN') {
