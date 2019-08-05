@@ -15,7 +15,7 @@ node {
     }
    withSonarQubeEnv(credentialsId: 'sonarid') {
       withMaven(jdk: 'jdk-8', maven: 'MAVEN') {
-         sh 'mvn sonar:sonar'    
+         sh 'mvn clean compile sonar:sonar'    
          
       }
    }
