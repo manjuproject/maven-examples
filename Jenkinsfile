@@ -13,9 +13,9 @@ node {
      sh 'mvn test'
       } 
     }
-   stage('sonarqube'){
+   withSonarQubeEnv(credentialsId: 'sonarid') {
       withMaven(jdk: 'jdk-8', maven: 'MAVEN') {
-         sh 'mvn sonar:sonar -Dsonar.projectKey=maven-examp -Dsonar.organization=manjuproject -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=21f657b170c7eba8698b097526446188d32735aa'    
+         sh 'mvn sonar:sonar'    
          
       }
    }
